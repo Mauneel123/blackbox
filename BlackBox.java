@@ -2,12 +2,6 @@
 import java.util.Random;
 import java.util.Scanner;
 
-
-
-/**
- * Created by Sripath Mishra on 9/8/2017.
- *
- */
 public class BlackBox {
     public static char box[][]; // The matrix for the game.
     public static int size;       // to store the number of rows and columns.
@@ -27,9 +21,7 @@ public class BlackBox {
     static int g2c=-1;
     static int g3r=-1;
     static int g3c=-1;
-    /**
-     * The default constructor which places default values to the class variables
-     */
+ 
     public BlackBox()
     {
         this.box=new char[0][0];
@@ -39,9 +31,7 @@ public class BlackBox {
         this.end=false;
         this.score=0;
     }
-    /**
-     * The parameterized constructor which places values to the class variables
-     */
+
     public BlackBox(int size, int numball, int numlink, boolean end, int score)
     {
         this.box=new char[size][size];
@@ -51,10 +41,7 @@ public class BlackBox {
         this.end=end;
         this.score=score;
     }
-    /**
-     * The main function takes input for the difficulty level and call the functions initialize(int) and
-     * playgame()
-     */
+ 
     public static void main(String[] args) {
         //Todo:start the game print the welcome message and ask for correct difficulty level.
         String s;
@@ -95,21 +82,15 @@ if((s.equalsIgnoreCase("easy")) || (s.equalsIgnoreCase("medium")) || (s.equalsIg
 
 
         }while(stayon==true);
-        //Todo: end the game if the user says quit.
-        //Todo:call the functions initialize and playgame()
-        // Todo: take care of high score
+
     }
-    /**
-     * The initialize funtion
-     */
+
     public void initialize() {
 
 
-        //Todo:initialise the Box[][]
         box=new char[size][size];
         Random r=new Random();
-        //Todo: place the 'X' and the '#'
-        // Todo: place 3 '0''s randomly.
+      
 
         for(int i=0;i<1;i++)
         {for (int j=0;j<size;j++)
@@ -182,13 +163,6 @@ if((s.equalsIgnoreCase("easy")) || (s.equalsIgnoreCase("medium")) || (s.equalsIg
             for (int j=1;j<size-1;j++)
 
             {if ((i==b1r && j==b1c) || (i==b2r && j==b2c) || (i==b3r && j==b3c))
-
-
-
-
-
-
-
             {this.box[i][j]='0';}
             else
             {this.box[i][j]=' ';}
@@ -199,11 +173,9 @@ if((s.equalsIgnoreCase("easy")) || (s.equalsIgnoreCase("medium")) || (s.equalsIg
 
     }
 
-    /**
-     * The printbox funtion prints out the matrix in a particular format as given in the handout.
-     */
+  
     public static void printbox() {
-        //Todo:print the box in the correct order
+
 
         for(int i=1;i<=size;i++)
         {System.out.print("  "+i);}
@@ -242,13 +214,11 @@ if((s.equalsIgnoreCase("easy")) || (s.equalsIgnoreCase("medium")) || (s.equalsIg
         6|# |  |  |  |  |  |# |
         7|X |# |# |# |# |# |X |
          ======================*/
-        //place the guesses as the come and print the balls when the player enter sumbit.
+
     }
-    /**
-     * The playgame funtion opens the first cell and is the main controller for the game. It calls various function when needed.
-     */
+   
     public static void printfinal() {
-        //Todo:print the box in the correct order
+    
 
         for(int i=1;i<=size;i++)
         {System.out.print("  "+i);}
@@ -282,13 +252,10 @@ if((s.equalsIgnoreCase("easy")) || (s.equalsIgnoreCase("medium")) || (s.equalsIg
         6|# |  |  |  |  |  |# |
         7|X |# |# |# |# |# |X |
          ======================*/
-        //place the guesses as the come and print the balls when the player enter sumbit.
+       
     }
     public static void playgame() {
-        //Todo:Take input of a guess or hint from the user.
-        //Todo:Check for valid input
-        //Todo:call required functions
-        //Todo:keep tab on score.
+ 
         int gg=0;int co=0;
         while(gg==0) {
             String in1, in2, in3;
@@ -372,10 +339,7 @@ if((s.equalsIgnoreCase("easy")) || (s.equalsIgnoreCase("medium")) || (s.equalsIg
      *
      */
     public static void check(int i,int j) {
-        //Todo:place a guess when the input of i and j are valid
-        //Todo:Check for a Hit
-
-
+      
         if(i<0 || j<0 || i>size-1 || j>size-1 || (i==0 && j==0) || (i==size-1 && j==size-1) || (i==size-1 && j==0) || (i==0 && j==size-1))
         {
             System.out.println(" Invalid input ");
@@ -521,49 +485,7 @@ if((s.equalsIgnoreCase("easy")) || (s.equalsIgnoreCase("medium")) || (s.equalsIg
 
                 }
             }
-           /* if(j==0)
-            {for(int c=0;c<size-1;c++)
-            {
-                if (box[i][c+1]=='0')
-                { boolean h = b.hitcheck(i, j);
-                    if (h == true) {
-                        box[i][j] = 'H';
-                        break;
-                    }
-                    }
-                if(box[i-1][c+1]=='0' || box[i+1][c+1]=='0')
-                {
-                    boolean as = b.deflectionCheck(i, j);
-                    if (as == true)
-                    {
-                        box[i][j] = 'D';
-                        break;
-
-                    }
-
-                }
-                if(box[i-1][0]=='0' || box[i+1][0]=='0')
-                {
-                    boolean r = b.reflectionCheck(i, j);
-                    if (r == true) {
-                        box[i][j] = 'R';
-                        break;
-                    }
-                }
-
-            boolean h = b.hitcheck(i, j);
-            if (h == true) {
-                box[i][j] = 'H';
-            }
-            //Todo:Check for a reflection
-            boolean r = b.reflectionCheck(i, j);
-            if (r == true) {
-                box[i][j] = 'R';
-            }
-
-           boolean as = b.deflectionCheck(i, j);
-            if (as == true) {
-                box[i][j] = 'D';*/
+     
         }
 
         boolean ac = b.straightRay(i, j);
@@ -575,8 +497,7 @@ if((s.equalsIgnoreCase("easy")) || (s.equalsIgnoreCase("medium")) || (s.equalsIg
         box[size-1][0]='X';
         box[size-1][size-1]='X';
     }
-    //Todo:Check for a bounce
-    //Todo:Print a statement telling the user they cannot place a fourth ball.
+
 
     /**
      * The hitcheck funtion takes in the row and column in the matrix, checks for Hit (H)
@@ -671,57 +592,7 @@ if((s.equalsIgnoreCase("easy")) || (s.equalsIgnoreCase("medium")) || (s.equalsIg
         }
 
 
-        /*// ball 1
-        if(j==0 && i-b1r==1 && b1c==1)
-        {
-            box[b1r-1][0]='R';z1=true;
-        }
-        if(j==0 && i-b1r==-1 && b1c==1)
-        {
-            box[b1r+1][0]='R';z1=true;
-        }
-        if (j==size-1 && i-b1r==1 && b1c==size-2)
-        {
-            box[b1r-1][size-1]='R';z1=true;
-        }
-        if (j==size-1 && i-b1r==-1 && b1c==size-2)
-        {
-            box[b1r+1][size-1]='R';z1=true;
-        }
-        //ball 2
-        if(j==0 && i-b2r==1 && b2c==1)
-        {
-            box[b2r-1][0]='R';z1=true;
-        }
-        if(j==0 && i-b2r==-1 && b2c==1)
-        {
-            box[b2r+1][0]='R';z1=true;
-        }
-        if (j==size-1 && i-b2r==1 && b2c==size-2)
-        {
-            box[b2r-1][size-1]='R';z1=true;
-        }
-        if (j==size-1 && i-b2r==-1 && b2c==size-2)
-        {
-            box[b2r+1][size-1]='R';z1=true;
-        }
-     //ball 3
-        if(j==0 && i-b3r==1 && b3c==1)
-        {
-            box[b3r-1][0]='R';z1=true;
-        }
-        if(j==0 && i-b3r==-1 && b3c==1)
-        {
-            box[b3r+1][0]='R';z1=true;
-        }
-        if (j==size-1 && i-b3r==1 && b3c==size-2)
-        {
-            box[b3r-1][size-1]='R';z1=true;
-        }
-        if (j==size-1 && i-b3r==-1 && b3c==size-2)
-        {
-            box[b3r+1][size-1]='R';z1=true;
-        }*/
+     
 
         return z1;
     }
@@ -792,60 +663,7 @@ if((s.equalsIgnoreCase("easy")) || (s.equalsIgnoreCase("medium")) || (s.equalsIg
                 }
             }
         }
-        /*
-        double d1=Math.sqrt(Math.pow((i-b1r),2)+Math.pow((j-b1c),2));
-        double d2=Math.sqrt(Math.pow((i-b2r),2)+Math.pow((j-b2c),2));
-        double d3=Math.sqrt(Math.pow((i-b3r),2)+Math.pow((j-b3c),2));
-
-        if (b.hitcheck(i,j)==false){
-        // ball 1
-        if((d1<=d2 && d1<=d3) || Math.abs(i-b1r)==1 || Math.abs(j-b1c)==1 || Math.abs(i-b3r)==1 || Math.abs(j-b3c)==1 || Math.abs(i-b2r)==1 || Math.abs(j-b2c)==1) {
-            if ((b1r - i) == 1 && j == 0) {
-                box[0][b1c - 1] = 'D';
-                z = true;
-            } else if ((i - b1r) == 1 && j == 0) {
-                box[size - 1][b1c - 1] = 'D';
-                z = true;
-            } else if ((b1r - i) == 1 && j == size - 1) {
-                box[0][b1c + 1] = 'D';
-                z = true;
-            } else if ((i - b1r) == 1 && j == size - 1) {
-                box[size - 1][b1c + 1] = 'D';
-                z = true;
-            }
-        }
-        // Ball 2
-        if((d2<=d1 && d2<=d3) || Math.abs(i-b2r)==1 || Math.abs(j-b2c)==1 || Math.abs(i-b1r)==1 || Math.abs(j-b1c)==1 || Math.abs(i-b3r)==1 || Math.abs(j-b3c)==1) {
-            if ((b2r - i) == 1 && j == 0) {
-                box[0][b2c - 1] = 'D';
-                z = true;
-            } else if ((i - b2r) == 1 && j == 0) {
-                box[size - 1][b2c - 1] = 'D';
-                z = true;
-            } else if ((b2r - i) == 1 && j == size - 1) {
-                box[0][b2c + 1] = 'D';
-                z = true;
-            } else if ((i - b2r) == 1 && j == size - 1) {
-                box[size - 1][b2c + 1] = 'D';
-                z = true;
-            }
-        }
-        // Ball 3
-        if((d3<=d1 && d3<=d2) || Math.abs(i-b3r)==1 || Math.abs(j-b3c)==1 || Math.abs(i-b1r)==1 || Math.abs(j-b1c)==1 || Math.abs(i-b2r)==1 || Math.abs(j-b2c)==1) {
-            if ((b3r - i) == 1 && j == 0) {
-                box[0][b3c - 1] = 'D';
-                z = true;
-            } else if ((i - b3r) == 1 && j == 0) {
-                box[size - 1][b3c - 1] = 'D';
-                z = true;
-            } else if ((b3r - i) == 1 && j == size - 1) {
-                box[0][b3c + 1] = 'D';
-                z = true;
-            } else if ((i - b3r) == 1 && j == size - 1) {
-                box[size - 1][b3c + 1] = 'D';
-                z = true;
-            }
-        }}*/
+       
         return z;
     }
     /**
@@ -929,10 +747,7 @@ if((s.equalsIgnoreCase("easy")) || (s.equalsIgnoreCase("medium")) || (s.equalsIg
         }
         return cc2;
     }
-    /**
-     * The following definitions are the getters and setter functions which have to be implemented
-     *
-     */
+
     public char[][] getbox()
     {
 
